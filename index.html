@@ -200,6 +200,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
+            min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -434,10 +435,9 @@
             background: rgba(40, 40, 70, 0.8);
         }
         
-        .social-item img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
+        .social-item i {
+            font-size: 2rem;
+            color: white;
         }
         
         .team-container {
@@ -572,7 +572,16 @@
             color: var(--light);
         }
         
-        /* Responsive Design */
+        /* Responsive Design Enhancements */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .section-title {
+                font-size: 2.3rem;
+            }
+        }
+        
         @media (max-width: 992px) {
             nav ul {
                 gap: 15px;
@@ -584,6 +593,25 @@
             
             .section-title {
                 font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .tournament-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .welcome-flex {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .welcome-flex > div {
+                flex: none;
+                width: 100%;
+                text-align: center;
             }
         }
         
@@ -628,6 +656,132 @@
             .tournament-details {
                 grid-template-columns: 1fr;
             }
+            
+            .features-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 400px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .tournament-title {
+                font-size: 1.6rem;
+            }
+            
+            .feature-title {
+                font-size: 1.4rem;
+            }
+            
+            .contact-info {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .register-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .social-item {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .social-item i {
+                font-size: 1.7rem;
+            }
+            
+            .team-text {
+                font-size: 1.1rem;
+            }
+            
+            .content-section {
+                padding: 60px 5%;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 15px;
+            }
+            
+            .contact-icon {
+                margin-bottom: 10px;
+            }
+            
+            .hero {
+                padding: 0 5%;
+            }
+            
+            .detail-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .feature-card, .tournament-card {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .social-item {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .social-item i {
+                font-size: 1.5rem;
+            }
+            
+            .tournament-title {
+                font-size: 1.4rem;
+            }
+            
+            .hero-btns {
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -636,7 +790,7 @@
     <header id="header">
         <a href="#" class="logo">
             <div>
-                <img src="/LogoNoBg.png" height="38" width="40" class="u-logo-image u-logo-image-1">
+                <img src="images/LogoNoBg.png" height="40" width="40">
             </div>
             <span class="logo-text">ESDELICS</span>
         </a>
@@ -740,26 +894,18 @@
         </p>
         
         <div class="social-grid">
-            <div class="social-item">
-               <a href="https://www.facebook.com/esdelics" class="social-item">
-                 <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook">
-               </a>
-            </div>
-            <div class="social-item">
-               <a href="https://www.instagram.com/esdelics_official" class="social-item">
-                 <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
-                </a>
-            </div>
-            <div class="social-item">
-               <a href="https://www.youtube.com/channel/UCIYpJ5fQx3O_OLsXeCh8KZQ" class="social-item">
-                 <img src="https://cdn-icons-png.flaticon.com/512/174/174883.png" alt="YouTube">
-                </a>
-            </div>
-            <div class="social-item">
-               <a href="https://x.com/esdelic_s" class="social-item">
-                 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-                </a>
-            </div>
+            <a href="https://www.facebook.com/esdelics" class="social-item">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/esdelics_official" class="social-item">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UCIYpJ5fQx3O_OLsXeCh8KZQ" class="social-item">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://x.com/esdelic_s" class="social-item">
+                <i class="fab fa-twitter"></i>
+            </a>
         </div>
     </section>
 
@@ -770,7 +916,7 @@
                 <p>
                     Esdelics is where competition meets community. We host high-stakes tournaments, rank the elite, and unite gamers worldwide. Whether you're climbing leaderboards or forging rivalries, this is your home turf. Join a thriving esports ecosystem built by players, for players.
                 </p>
-                <div style="display: flex; margin-top: 30px; gap: 20px;">
+                <div class="welcome-flex" style="display: flex; margin-top: 30px; gap: 20px;">
                     <div style="flex: 1; text-align: center;">
                         <p class="tournament-title" style="font-size: 2rem;">Compete</p>
                     </div>
@@ -911,7 +1057,7 @@
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="logo" style="justify-content: center; margin-bottom: 20px;">
                 <div>
-                <img src="https://github.com/esdelics/Welcome/blob/main/LogoNoBg.png" height="38" width="40" class="u-logo-image u-logo-image-1">
+                <img src="images/LogoNoBg.png" height="40" width="40">
             </div>
                 <span class="logo-text">ESDELICS</span>
             </div>
@@ -919,22 +1065,22 @@
                 © 2023 Esdelics Esports. All rights reserved. Crafting competitive moments that ignite communities.
             </p>
             <div class="social-grid" style="max-width: 600px; margin: 0 auto;">
-              <a href="https://www.facebook.com/esdelics" style="text-decoration: none;" class="social-item">
+                <a href="https://www.facebook.com/esdelics" class="social-item">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://www.instagram.com/esdelics_official" style="text-decoration: none;" class="social-item">
+                <a href="https://www.instagram.com/esdelics_official" class="social-item">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.youtube.com/channel/UCIYpJ5fQx3O_OLsXeCh8KZQ" style="text-decoration: none;" class="social-item">
+                <a href="https://www.youtube.com/channel/UCIYpJ5fQx3O_OLsXeCh8KZQ" class="social-item">
                     <i class="fab fa-youtube"></i>
                 </a>
-                <a href="https://twitter.com/esdelics" style="text-decoration: none;" class="social-item">
-                    <i class="fab fa-whatsapp"></i>
+                <a href="https://x.com/esdelic_s" class="social-item">
+                    <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://discord.gg/mh6jKPdX" style="text-decoration: none;" class="social-item">
+                <a href="https://discord.gg/mh6jKPdX" class="social-item">
                     <i class="fab fa-discord"></i>
                 </a>
-                <a href="https://x.com/esdelic_s" style="text-decoration: none;" class="social-item">
+                <a href="https://x.com/esdelic_s" class="social-item">
                     <i class="fab fa-x"></i>
                 </a>
             </div>
