@@ -571,6 +571,82 @@
             font-size: 1.5rem;
             color: var(--light);
         }
+
+        .tournament-image-container {
+            flex: 1;
+            display: flex;
+            float: right;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .tournament-image {
+            max-width: auto;
+            height: auto;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s ease;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4) border-box;
+        }
+        
+        .tournament-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+        
+        .tournament-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+        
+        .tournament-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .tournament-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            border-radius: 10px;
+            z-index: 1;
+        }
+        
+        .tournament-image:hover::before {
+            opacity: 1;
+        }
+        
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 2;
+        }
+        
+        .tournament-image:hover .image-caption {
+            transform: translateY(0);
+        }
         
         /* Responsive Design Enhancements */
         @media (max-width: 1200px) {
@@ -878,6 +954,14 @@
                 </div>
             </div>
             <p>Player must follow all the rules. Join fast, only 25 seats available!</p>
+
+            <div class="tournament-image-container">
+                    <div class="tournament-image">
+                        <!-- Tournament image with hover effect -->
+                        <img src="https://drive.google.com/thumbnail?id=1WMTjyL2gWfChtK6EiYwmG03pdy-Mari3&sz=s800" alt="BGMI Tournament Banner">
+                        <div class="image-caption">BGMI Championship - July 2025</div>
+                    </div>
+             </div>
 
             <div class="tournament-rules">
                     <h4 class="rules-title">Tournament Rules:</h4>
