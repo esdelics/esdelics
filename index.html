@@ -1270,6 +1270,7 @@
     padding: 12px 18px;
     width: 100%;
     gap: 12px;
+    flex-wrap: wrap;
 }
 .suggestion-icon {
     display: flex;
@@ -1278,6 +1279,7 @@
     background: none;
     border-radius: 50%;
     margin-right: 4px;
+    min-width: 28px;
 }
 .suggestion-icon i {
     font-size: 1.5rem;
@@ -1290,9 +1292,10 @@
     font-weight: 600;
     margin-right: 8px;
     letter-spacing: 0.5px;
+    min-width: 120px;
 }
 .suggestion-input-horizontal {
-    flex: 1;
+    flex: 1 1 120px;
     border: none;
     outline: none;
     background: rgba(40,40,60,0.95);
@@ -1302,6 +1305,7 @@
     border-radius: 16px;
     margin-right: 8px;
     box-shadow: 0 2px 8px rgba(108,99,255,0.08);
+    min-width: 120px;
 }
 .suggestion-send-btn-horizontal {
     background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
@@ -1317,6 +1321,7 @@
     gap: 6px;
     box-shadow: 0 2px 8px rgba(108,99,255,0.12);
     transition: background 0.3s, transform 0.2s;
+    min-width: 90px;
 }
 .suggestion-send-btn-horizontal i {
     font-size: 1.2rem;
@@ -1338,17 +1343,65 @@
     align-items: center;
     box-shadow: 0 2px 8px rgba(108,99,255,0.12);
     transition: background 0.3s, transform 0.2s;
+    min-width: 50px;
 }
 .suggestion-whatsapp-horizontal:hover {
     background: #128c7e;
     transform: scale(1.08);
 }
-@media (max-width: 576px) {
-    .suggestion-box-horizontal { max-width: 98vw; }
-    .suggestion-form-horizontal { padding: 8px 6px; gap: 6px; }
-    .suggestion-title { font-size: 1rem; }
-    .suggestion-input-horizontal { font-size: 1rem; padding: 6px 8px; }
-    .suggestion-send-btn-horizontal, .suggestion-whatsapp-horizontal { font-size: 1rem; padding: 7px 10px; }
+
+/* Tablet and small desktop */
+@media (max-width: 900px) {
+    .suggestion-box-horizontal {
+        max-width: 98vw;
+    }
+    .suggestion-form-horizontal {
+        padding: 10px 8px;
+        gap: 8px;
+    }
+    .suggestion-title { font-size: 1rem; min-width: 90px; }
+    .suggestion-input-horizontal { font-size: 1rem; padding: 7px 10px; min-width: 80px; }
+    .suggestion-send-btn-horizontal, .suggestion-whatsapp-horizontal { font-size: 1rem; padding: 7px 10px; min-width: 70px; }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+    .suggestion-box-horizontal {
+        max-width: 100vw;
+        padding: 0 2vw;
+    }
+    .suggestion-form-horizontal {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px 4px;
+    }
+    .suggestion-title, .suggestion-icon {
+        margin-right: 0;
+        margin-bottom: 4px;
+        min-width: unset;
+        text-align: left;
+    }
+    .suggestion-input-horizontal {
+        margin-right: 0;
+        margin-bottom: 8px;
+        min-width: unset;
+        width: 100%;
+    }
+    .suggestion-send-btn-horizontal, .suggestion-whatsapp-horizontal {
+        width: 100%;
+        min-width: unset;
+        margin-left: 0;
+        margin-bottom: 6px;
+        justify-content: center;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+    .suggestion-title { font-size: 0.95rem; }
+    .suggestion-input-horizontal { font-size: 0.95rem; }
+    .suggestion-send-btn-horizontal, .suggestion-whatsapp-horizontal { font-size: 0.95rem; }
 }
     </style>
 </head>
