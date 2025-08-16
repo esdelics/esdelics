@@ -1221,6 +1221,135 @@
         display: block;
     }
 }
+
+/* Suggestion Box Styles */
+.suggestion-box {
+    margin: 40px auto 0 auto;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.suggestion-squircle-row {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+.suggestion-squircle {
+    background: rgba(30,30,50,0.85);
+    border-radius: 22px;
+    box-shadow: 0 4px 18px rgba(108,99,255,0.10);
+    padding: 18px 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+    min-height: 80px;
+    margin-bottom: 0;
+}
+.suggestion-squircle i {
+    font-size: 2.2rem;
+    color: #ffd700;
+    margin-bottom: 6px;
+}
+.suggestion-label {
+    font-size: 1.08rem;
+    color: var(--accent);
+    margin-top: 2px;
+    text-align: center;
+    font-weight: 600;
+}
+.suggestion-form-horizontal {
+    display: flex;
+    align-items: center;
+    background: rgba(30,30,50,0.92);
+    border-radius: 22px;
+    box-shadow: 0 4px 18px rgba(108,99,255,0.10);
+    padding: 12px 18px;
+    width: 100%;
+    gap: 12px;
+}
+.suggestion-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+.suggestion-icon i {
+    font-size: 1.5rem;
+    color: #b48cff;
+    margin-right: 2px;
+}
+.suggestion-title {
+    font-size: 1.08rem;
+    color: #ff9a9e;
+    font-weight: 600;
+    margin-right: 8px;
+    letter-spacing: 0.5px;
+}
+.suggestion-input-horizontal {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: rgba(40,40,60,0.95);
+    font-size: 1.08rem;
+    color: var(--light);
+    padding: 8px 14px;
+    border-radius: 16px;
+    margin-right: 8px;
+    box-shadow: 0 2px 8px rgba(108,99,255,0.08);
+}
+.suggestion-send-btn-horizontal {
+    background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+    border: none;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 1.08rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(108,99,255,0.12);
+    transition: background 0.3s, transform 0.2s;
+}
+.suggestion-send-btn-horizontal i {
+    font-size: 1.2rem;
+}
+.suggestion-send-btn-horizontal:hover {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    transform: scale(1.08);
+}
+.suggestion-whatsapp-horizontal {
+    background: #25d366;
+    border: none;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 1.3rem;
+    padding: 8px 14px;
+    cursor: pointer;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(108,99,255,0.12);
+    transition: background 0.3s, transform 0.2s;
+}
+.suggestion-whatsapp-horizontal:hover {
+    background: #128c7e;
+    transform: scale(1.08);
+}
+@media (max-width: 576px) {
+    .suggestion-box-horizontal { max-width: 98vw; }
+    .suggestion-form-horizontal { padding: 8px 6px; gap: 6px; }
+    .suggestion-title { font-size: 1rem; }
+    .suggestion-input-horizontal { font-size: 1rem; padding: 6px 8px; }
+    .suggestion-send-btn-horizontal, .suggestion-whatsapp-horizontal { font-size: 1rem; padding: 7px 10px; }
+}
     </style>
 </head>
 <body>
@@ -1266,64 +1395,72 @@
                 <a href="#tournaments" class="btn primary-btn">Join Tournament</a>
                 <a href="#about" class="btn secondary-btn">Learn More</a>
             </div>
+            <!-- Suggestion Box (YouTube Search Style, Squircle Tile, Horizontal Row) -->
+            <div class="suggestion-box-horizontal" style="margin-top:32px;">
+                <form class="suggestion-form-horizontal" onsubmit="sendSuggestion(event)">
+                    <span class="suggestion-icon"><i class="fas fa-lightbulb"></i></span>
+                    <span class="suggestion-title">Give us Suggestions</span>
+                    <input type="text" class="suggestion-input-horizontal" id="suggestionText" placeholder="Type your suggestion" required>
+                    <button type="submit" class="suggestion-send-btn-horizontal">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                    <button type="button" class="suggestion-whatsapp-horizontal" onclick="sendWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                </form>
+            </div>
+            <!-- End Suggestion Box -->
         </div>
     </section>
 
     <!-- Content Sections -->
     <section class="content-section" id="tournaments" style="background: rgba(10, 10, 20, 0.5);">
-        <h2 class="section-title">Tournaments</h2>
-        <div class="tournament-tiles">
-            <!-- Information Tile -->
-            <div class="tile tournament-info-tile">
-                <h3 class="tournament-title">BGMI ES19</h3>
-                <div class="tournament-details-list">
-                    <div class="detail-row highlight-detail">
-                        <span class="detail-icon"><i class="fas fa-map"></i></span>
-                        <span class="detail-label">Map</span>
-                        <span class="detail-value">Miramar</span>
-                    </div>
-                    <div class="detail-row highlight-detail">
-                        <span class="detail-icon"><i class="fas fa-calendar"></i></span>
-                        <span class="detail-label">Date</span>
-                        <span class="detail-value">16 August, 2025</span>
-                    </div>
-                    <div class="detail-row highlight-detail">
-                        <span class="detail-icon"><i class="fas fa-clock"></i></span>
-                        <span class="detail-label">Time</span>
-                        <span class="detail-value">8:00 PM IST</span>
-                    </div>
-                    <div class="detail-row highlight-detail">
-                        <span class="detail-icon"><i class="fas fa-gamepad"></i></span>
-                        <span class="detail-label">Mode</span>
-                        <span class="detail-value">Squad (1v4, 2v4, 3v4 or 4v4)</span>
-                    </div>
-                    <div class="detail-row highlight-detail">
-                        <span class="detail-icon"><i class="fas fa-credit-card"></i></span>
-                        <span class="detail-label">Registration Fees</span>
-                        <span class="detail-value">NA</span>
-                    </div>
-                    <div class="detail-row highlight-detail">
-                        <span class="detail-icon"><i class="fas fa-trophy"></i></span>
-                        <span class="detail-label">Prize</span>
-                        <span class="detail-value">₹40 (Top in Performance Chart)</span>
-                    </div>
+    <h2 class="section-title">Tournaments</h2>
+    <div class="tournament-tiles">
+        <!-- Information Tile ONLY, with Participate Here button -->
+        <div class="tile tournament-info-tile">
+            <h3 class="tournament-title">BGMI ES20</h3>
+            <div class="tournament-details-list">
+                <div class="detail-row highlight-detail">
+                    <span class="detail-icon"><i class="fas fa-map"></i></span>
+                    <span class="detail-label">Map</span>
+                    <span class="detail-value">Erangel</span>
                 </div>
-                <p style="margin-top:18px;">Player must follow all the rules. Join fast, only 25 seats available!</p>
-            </div>
-            <!-- Pamphlet/Image Tile -->
-            <div class="tile tournament-image-tile">
-                <div class="tournament-image">
-                    <img src="https://drive.google.com/thumbnail?id=11zYXLibfgOa5s58zYvV-v1hnkdHWwEb1&sz=s800" alt="BGMI Match">
-                    <div class="image-caption">BGMI Match - 16 August 2025</div>
+                <div class="detail-row highlight-detail">
+                    <span class="detail-icon"><i class="fas fa-calendar"></i></span>
+                    <span class="detail-label">Date</span>
+                    <span class="detail-value">17 August, 2025</span>
                 </div>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdb5HE9v4Xfad6ABJriS8KIhvcKFjO5ggNZ2D2aiokT55OG5Q/viewform?usp=dialog">
-                    <button class="register-btn" style="margin-top: 20px; width: 100%;">
-                        <i class="fas fa-user-plus"></i> Participate Here
-                    </button>
-                </a>
+                <div class="detail-row highlight-detail">
+                    <span class="detail-icon"><i class="fas fa-clock"></i></span>
+                    <span class="detail-label">Time</span>
+                    <span class="detail-value">09:00 PM IST</span>
+                </div>
+                <div class="detail-row highlight-detail">
+                    <span class="detail-icon"><i class="fas fa-gamepad"></i></span>
+                    <span class="detail-label">Mode</span>
+                    <span class="detail-value">Squad (1v4, 2v4, 3v4 or 4v4)</span>
+                </div>
+                <div class="detail-row highlight-detail">
+                    <span class="detail-icon"><i class="fas fa-credit-card"></i></span>
+                    <span class="detail-label">Registration Fees</span>
+                    <span class="detail-value">NA</span>
+                </div>
+                <div class="detail-row highlight-detail">
+                    <span class="detail-icon"><i class="fas fa-trophy"></i></span>
+                    <span class="detail-label">Prize</span>
+                    <span class="detail-value">₹40 (Top in Performance Chart)</span>
+                </div>
             </div>
+            <p style="margin-top:18px;">Player must follow all the rules. Join fast, only 25 seats available!</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdb5HE9v4Xfad6ABJriS8KIhvcKFjO5ggNZ2D2aiokT55OG5Q/viewform?usp=dialog">
+                <button class="register-btn" style="margin-top: 24px; width: 100%;">
+                    <i class="fas fa-user-plus"></i> Participate Here
+                </button>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Tournament Rules & Performance Chart Section (Tiles, Side by Side on PC, Stacked on Mobile) -->
     <section class="content-section" id="tournament-info" style="background: rgba(10, 10, 20, 0.5); margin-top: 40px;">
@@ -1715,5 +1852,20 @@
             });
         });
     </script>
+<script>
+function sendSuggestion(event) {
+    event.preventDefault();
+    const suggestion = document.getElementById('suggestionText').value.trim();
+    if (!suggestion) return;
+    const mailto = `mailto:tweekortweak@gmail.com?subject=Suggestion&body=${encodeURIComponent(suggestion)}`;
+    window.open(mailto, '_blank');
+}
+function sendWhatsApp() {
+    const suggestion = document.getElementById('suggestionText').value.trim();
+    if (!suggestion) return;
+    const whatsapp = `https://wa.me/919450851693?text=${encodeURIComponent(suggestion)}`;
+    window.open(whatsapp, '_blank');
+}
+</script>
 </body>
 </html>
