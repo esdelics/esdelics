@@ -21,6 +21,7 @@
             --darker: #0a0a14;
             --light: #f0f0ff;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary), #ff9a9e, #fad0c4);
+            --header-height: 75px; /* Added variable for header height */
         }
         
         body {
@@ -48,6 +49,7 @@
             justify-content: space-between;
             align-items: center;
             transition: all 0.4s ease;
+            height: var(--header-height);
         }
         
         header.scrolled {
@@ -197,7 +199,7 @@
             transition: all 0.3s ease;
         }
         
-        /* Hero Section */
+        /* Hero Section - FIXED FOR MOBILE */
         .hero {
             height: 100vh;
             min-height: 600px;
@@ -207,12 +209,17 @@
             padding: 0 10%;
             position: relative;
             overflow: hidden;
+            /* Add padding to account for fixed header */
+            padding-top: var(--header-height);
+            box-sizing: border-box;
         }
         
         .hero-content {
             text-align: center;
             max-width: 900px;
             z-index: 2;
+            /* Ensure content is properly centered */
+            margin-top: -30px;
         }
         
         .hero h1 {
@@ -874,13 +881,13 @@
             
             nav ul {
                 position: fixed;
-                top: 80px;
+                top: var(--header-height); /* Adjusted top position */
                 right: -100%;
                 flex-direction: column;
                 background: rgba(10, 10, 20, 0.95);
                 backdrop-filter: blur(10px);
                 width: 70%;
-                height: calc(100vh - 80px);
+                height: calc(100vh - var(--header-height));
                 padding: 40px 20px;
                 transition: right 0.4s ease;
                 align-items: center;
@@ -937,6 +944,16 @@
         }
         
         @media (max-width: 576px) {
+            .hero {
+                padding-top: var(--header-height); /* Ensure proper spacing */
+                height: calc(100vh - var(--header-height)); /* Adjust height */
+                min-height: 500px; /* Reduced min-height for mobile */
+            }
+            
+            .hero-content {
+                margin-top: 0; /* Reset margin */
+            }
+            
             .hero h1 {
                 font-size: 2rem;
             }
@@ -1397,6 +1414,58 @@
     transform: scale(1.08);
 }
 
+/* Mobile Suggestion Box Layout */
+@media (max-width: 600px) {
+    .suggestion-form-horizontal {
+        flex-direction: column;
+        padding: 16px;
+    }
+    
+    .suggestion-row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .suggestion-row-1 {
+        background: rgba(40, 40, 60, 0.8);
+        border-radius: 20px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .suggestion-row-2 {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+    }
+    
+    .suggestion-icon {
+        margin-right: 10px;
+    }
+    
+    .suggestion-title {
+        min-width: auto;
+        margin-right: 12px;
+    }
+    
+    .suggestion-input-horizontal {
+        flex-grow: 1;
+        min-width: 0;
+        margin-right: 0;
+    }
+    
+    .suggestion-send-btn-horizontal,
+    .suggestion-whatsapp-horizontal {
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+    }
+}
+
 /* Tablet and small desktop */
 @media (max-width: 900px) {
     .suggestion-box-horizontal {
@@ -1450,9 +1519,34 @@
     .suggestion-input-horizontal { font-size: 0.95rem; }
     .suggestion-send-btn-horizontal, .suggestion-whatsapp-horizontal { font-size: 0.95rem; }
 }
+
+/* Mobile Header Height Adjustment */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px;
+    }
+}
+
+/* Hero section mobile optimization */
+@media (max-height: 700px) and (max-width: 768px) {
+    .hero {
+        min-height: 450px;
+    }
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    .hero-btns {
+        margin-top: 20px;
+    }
+}
     </style>
 </head>
-<body>    
+<body>
     <!-- Sleek Header -->
     <header id="header">
         <a href="#" class="logo">
@@ -1486,7 +1580,7 @@
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Fixed for mobile -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>WHERE ESPORTS PULSES</h1>
@@ -1498,15 +1592,19 @@
             <!-- Suggestion Box (YouTube Search Style, Squircle Tile, Horizontal Row) -->
             <div class="suggestion-box-horizontal" style="margin-top:32px;">
                 <form class="suggestion-form-horizontal" onsubmit="sendSuggestion(event)">
-                    <span class="suggestion-icon"><i class="fas fa-lightbulb"></i></span>
-                    <span class="suggestion-title">Give us Suggestions</span>
-                    <input type="text" class="suggestion-input-horizontal" id="suggestionText" placeholder="Type your suggestion" required>
-                    <button type="submit" class="suggestion-send-btn-horizontal">
-                        <i class="fas fa-paper-plane"></i> Send
-                    </button>
-                    <button type="button" class="suggestion-whatsapp-horizontal" onclick="sendWhatsApp()">
-                        <i class="fab fa-whatsapp"></i>
-                    </button>
+                    <div class="suggestion-row suggestion-row-1">
+                        <span class="suggestion-icon"><i class="fas fa-lightbulb"></i></span>
+                        <span class="suggestion-title">Give us Suggestions</span>
+                        <input type="text" class="suggestion-input-horizontal" id="suggestionText" placeholder="Type your suggestion" required>
+                    </div>
+                    <div class="suggestion-row suggestion-row-2">
+                        <button type="submit" class="suggestion-send-btn-horizontal">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                        <button type="button" class="suggestion-whatsapp-horizontal" onclick="sendWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                    </div>
                 </form>
             </div>
             <!-- End Suggestion Box -->
@@ -1836,7 +1934,7 @@
                     <p style="margin-top: 15px;">
                         Currently no posts/vacancies are available, but we're always looking for passionate esports enthusiasts. Send us your resume and we'll contact you when opportunities arise.
                     </p>
-                    <a href="mailto:esdelics@outlook.com">
+                    <a href="mailto:tweekortweak@gmail.com">
                     <button class="register-btn" style="margin-top: 20px;">
                         <i class="fas fa-paper-plane"></i>Submit Resume
                     </button>
@@ -1964,24 +2062,6 @@
                 }
             });
         });
-
-        // Update responsive indicator
-        function updateResponsiveIndicator() {
-            const indicator = document.querySelector('.indicator-text');
-            if (!indicator) return;
-            
-            const width = window.innerWidth;
-            if (width < 576) {
-                indicator.textContent = 'Mobile View';
-            } else if (width < 992) {
-                indicator.textContent = 'Tablet View';
-            } else {
-                indicator.textContent = 'Desktop View';
-            }
-        }
-        
-        window.addEventListener('resize', updateResponsiveIndicator);
-        updateResponsiveIndicator();
     </script>
 <script>
 function sendSuggestion(event) {
@@ -1997,6 +2077,29 @@ function sendWhatsApp() {
     const whatsapp = `https://wa.me/919450851693?text=${encodeURIComponent(suggestion)}`;
     window.open(whatsapp, '_blank');
 }
+
+// Adjust hero section on mobile devices
+function adjustHeroForMobile() {
+    const hero = document.querySelector('.hero');
+    const header = document.getElementById('header');
+    
+    if (window.innerWidth <= 768) {
+        // Set padding top to match header height
+        const headerHeight = header.offsetHeight;
+        hero.style.paddingTop = `${headerHeight}px`;
+        
+        // Adjust height calculation
+        hero.style.height = `calc(100vh - ${headerHeight}px)`;
+        
+        // Adjust content positioning
+        const heroContent = document.querySelector('.hero-content');
+        heroContent.style.marginTop = '0';
+    }
+}
+
+// Run on load and resize
+window.addEventListener('load', adjustHeroForMobile);
+window.addEventListener('resize', adjustHeroForMobile);
 </script>
 </body>
 </html>
