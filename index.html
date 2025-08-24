@@ -21,7 +21,7 @@
             --darker: #0a0a14;
             --light: #f0f0ff;
             --gradient: linear-gradient(135deg, var(--primary), var(--secondary), #ff9a9e, #fad0c4);
-            --header-height: 75px; /* Added variable for header height */
+            --header-height: 75px;
         }
         
         body {
@@ -66,14 +66,10 @@
         }
         
         .logo-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--gradient);
-            border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            animation: pulse 3s infinite;
+            gap: 12px;
+            text-decoration: none;
         }
         
         .logo-text {
@@ -199,7 +195,7 @@
             transition: all 0.3s ease;
         }
         
-        /* Hero Section - FIXED FOR MOBILE */
+        /* Hero Section */
         .hero {
             height: 100vh;
             min-height: 600px;
@@ -209,7 +205,6 @@
             padding: 0 10%;
             position: relative;
             overflow: hidden;
-            /* Add padding to account for fixed header */
             padding-top: var(--header-height);
             box-sizing: border-box;
         }
@@ -218,7 +213,6 @@
             text-align: center;
             max-width: 900px;
             z-index: 2;
-            /* Ensure content is properly centered */
             margin-top: -30px;
         }
         
@@ -367,56 +361,123 @@
             border-radius: 2px;
         }
         
-        .tournament-card {
-            background: rgba(30, 30, 50, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
+        /* Tournament Tiles Layout */
+        .tournament-tiles {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .tile {
+            background: rgba(30, 30, 50, 0.85);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(108,99,255,0.12);
+            padding: 32px 28px;
+            flex: 1 1 420px;
+            min-width: 320px;
+            max-width: 520px;
             margin-bottom: 30px;
-            border: 1px solid rgba(108, 99, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(108, 99, 255, 0.15);
         }
         
-        .tournament-card:hover {
+        .tile:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.25);
+            background: rgba(35, 35, 60, 0.9);
         }
         
-        .tournament-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+        .tile-title {
+            font-size: 1.6rem;
             color: var(--primary);
-        }
-        
-        .tournament-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .detail-item {
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(108, 99, 255, 0.2);
         }
         
-        .detail-icon {
-            font-size: 1.3rem;
-            color: #f0f8ff; /* Premium ice/white color */
-            margin-right: 12px;
-            background: var(--gradient);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
+        .tile-list {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+            padding-left: 18px;
+            width: 100%;
+        }
+        
+        .tile-list li {
+            margin-bottom: 10px;
+            padding-left: 8px;
+        }
+        
+        .rule-category {
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(108,99,255,0.12);
+            gap: 8px;
         }
         
-        /* UPDATED: Social Grid with Responsive Enhancements */
+        .rule-category i {
+            font-size: 1.1rem;
+        }
+        
+        .rank-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            background: rgba(20,20,40,0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .rank-table th, .rank-table td {
+            border: 1px solid rgba(108,99,255,0.15);
+            padding: 8px 12px;
+            text-align: center;
+        }
+        
+        .rank-table th {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        .rank-table tr:nth-child(even) {
+            background: rgba(108,99,255,0.07);
+        }
+        
+        .rank-table tr:hover {
+            background: rgba(108,99,255,0.12);
+        }
+        
+        .tile-note {
+            margin-top: 12px;
+            font-size: 1.05rem;
+            color: var(--accent);
+            background: rgba(108,99,255,0.08);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+        
+        /* Social Grid */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -426,7 +487,6 @@
             max-width: 1200px;
             margin: 0 auto 30px auto;
             padding: 0 20px;
-            overflow-x: hidden;
         }
         
         .social-squircle {
@@ -517,12 +577,11 @@
             line-height: 1.6;
             padding: 0 10px;
         }
-        
         .team-container {
             max-width: 1000px;
             margin: 0 auto;
         }
-        
+
         .team-text {
             font-size: 1.2rem;
             line-height: 1.8;
@@ -531,6 +590,7 @@
             padding: 0 20px;
         }
         
+        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -581,6 +641,7 @@
             font-weight: bold;
         }
         
+        /* Contact Grid */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -625,214 +686,97 @@
             font-size: 1.5rem;
         }
         
-        .career-section {
-            position: relative;
-            padding: 100px 20px;
-            text-align: center;
-            overflow: hidden;
-        }
-        
-        .career-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .career-title {
-            font-size: 3rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-        }
-        
-        .career-subtitle {
-            font-size: 1.5rem;
-            color: var(--light);
-        }
-
-        .tournament-image-container {
-            flex: 1;
-            display: flex;
-            float: right;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .tournament-image {
-            max-width: 60%;
-            height: 40%;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            transition: all 0.5s ease;
-            border: 3px solid transparent;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4) border-box;
-        }
-        
-        .tournament-image img {
+        /* Suggestion Box Styles */
+        .suggestion-box-two-rows {
+            margin: 40px auto 0 auto;
+            max-width: 500px;
             width: 100%;
-            height: 5%;
-            display: block;
-            border-radius: 10px;
-            transition: all 0.5s ease;
-        }
-        
-        .tournament-image:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-        }
-        
-        .tournament-image:hover img {
-            transform: scale(1.05);
-        }
-        
-        .tournament-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            border-radius: 10px;
-            z-index: 1;
-        }
-        
-        .tournament-image:hover::before {
-            opacity: 1;
-        }
-        
-        .image-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 1.1rem;
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            z-index: 2;
-        }
-        
-        .tournament-image:hover .image-caption {
-            transform: translateY(0);
-        }
-        
-        /* Tournament Rules & Performance Chart Styles */
-        .tournament-tiles {
-            display: flex;
-            gap: 40px;
-            justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-        .tile {
-            background: rgba(30, 30, 50, 0.85);
-            border-radius: 18px;
-            box-shadow: 0 8px 32px rgba(108,99,255,0.12);
-            padding: 32px 28px;
-            flex: 1 1 420px;
-            min-width: 320px;
-            max-width: 520px;
-            margin-bottom: 30px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
         }
-        @media (max-width: 992px) {
-            .tournament-tiles {
-                flex-direction: column;
-                gap: 0;
-                align-items: stretch;
-            }
-            .tile {
-                max-width: 100%;
-                min-width: 0;
-            }
+        
+        .suggestion-row-1, .suggestion-row-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 15px;
         }
-        .tile-title {
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin-bottom: 18px;
+        
+        .suggestion-input-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-        .tile-list {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 0;
-            padding-left: 18px;
-        }
-        .tile-list li {
-            margin-bottom: 10px;
-        }
-        .rank-table {
+            background: rgba(30, 30, 50, 0.92);
+            border-radius: 22px;
+            box-shadow: 0 4px 18px rgba(108, 99, 255, 0.1);
+            padding: 12px 18px;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            background: rgba(20,20,40,0.7);
-            border-radius: 8px;
-            overflow: hidden;
         }
-        .rank-table th, .rank-table td {
-            border: 1px solid rgba(108,99,255,0.15);
-            padding: 6px 10px;
-            text-align: center;
-        }
-        .rank-table th {
-            background: var(--primary);
-            color: #fff;
-            font-weight: 600;
-        }
-        .rank-table tr:nth-child(even) {
-            background: rgba(108,99,255,0.07);
-        }
-        .tile-note {
-            margin-top: 12px;
-            font-size: 1.05rem;
-            color: var(--accent);
-            background: rgba(108,99,255,0.08);
-            padding: 8px 12px;
-            border-radius: 8px;
+        
+        .suggestion-icon {
             display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+        
+        .suggestion-icon i {
+            font-size: 1.5rem;
+            color: #b48cff;
+        }
+        
+        .suggestion-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 1.08rem;
+            color: var(--light);
+            padding: 8px 0;
+        }
+        
+        .suggestion-buttons {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .suggestion-send-btn, .suggestion-whatsapp-btn {
+            flex: 1;
+            border: none;
+            border-radius: 22px;
+            padding: 12px 0;
+            font-size: 1.08rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
             align-items: center;
             gap: 8px;
+            transition: all 0.3s ease;
         }
         
-        /* Ensure all .tile elements have the same size in PC view */
-        .tournament-tiles .tile {
-            min-width: 420px;
-            max-width: 520px;
-            min-height: 520px;
-            height: 100%;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        /* Make sure both tournament sections use .tournament-tiles for layout */
-        @media (max-width: 992px) {
-            .tournament-tiles .tile {
-                min-width: 0;
-                max-width: 100%;
-                min-height: unset;
-                height: auto;
-            }
+        .suggestion-send-btn {
+            background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+            color: white;
         }
         
-        /* Responsive Design Enhancements */
+        .suggestion-whatsapp-btn {
+            background: #25d366;
+            color: white;
+        }
+        
+        .suggestion-send-btn:hover, .suggestion-whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .suggestion-whatsapp-btn:hover {
+            background: #128c7e;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 1200px) {
             .hero h1 {
                 font-size: 3.5rem;
@@ -859,30 +803,32 @@
                 font-size: 1.3rem;
             }
             
-            .tournament-details {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .welcome-flex {
+            .tournament-tiles {
                 flex-direction: column;
-                gap: 15px;
+                gap: 0;
+                align-items: stretch;
             }
             
-            .welcome-flex > div {
-                flex: none;
-                width: 100%;
-                text-align: center;
+            .tile {
+                max-width: 100%;
+                min-width: 0;
+                min-height: unset;
+                height: auto;
             }
         }
         
         @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+            }
+            
             .hamburger {
                 display: flex;
             }
             
             nav ul {
                 position: fixed;
-                top: var(--header-height); /* Adjusted top position */
+                top: var(--header-height);
                 right: -100%;
                 flex-direction: column;
                 background: rgba(10, 10, 20, 0.95);
@@ -913,15 +859,10 @@
                 align-items: center;
             }
             
-            .tournament-details {
-                grid-template-columns: 1fr;
-            }
-            
             .features-grid, .contact-grid {
                 grid-template-columns: 1fr;
             }
             
-            /* Updated social grid for mobile */
             .social-grid {
                 grid-template-columns: 1fr;
                 max-width: 500px;
@@ -931,10 +872,6 @@
                 font-size: 1.8rem;
             }
             
-            .tournament-title {
-                font-size: 1.6rem;
-            }
-            
             .feature-title {
                 font-size: 1.4rem;
             }
@@ -942,17 +879,26 @@
             .contact-info {
                 padding: 30px;
             }
+            
+            .suggestion-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .suggestion-send-btn, .suggestion-whatsapp-btn {
+                width: 100%;
+            }
         }
         
         @media (max-width: 576px) {
             .hero {
-                padding-top: var(--header-height); /* Ensure proper spacing */
-                height: calc(100vh - ${headerHeight}px); /* Adjust height */
-                min-height: 500px; /* Reduced min-height for mobile */
+                padding-top: var(--header-height);
+                height: calc(100vh - var(--header-height));
+                min-height: 500px;
             }
             
             .hero-content {
-                margin-top: 0; /* Reset margin */
+                margin-top: 0;
             }
             
             .hero h1 {
@@ -997,10 +943,6 @@
                 font-size: 1rem;
             }
             
-            .team-text {
-                font-size: 1.1rem;
-            }
-            
             .content-section {
                 padding: 60px 5%;
             }
@@ -1019,14 +961,20 @@
                 padding: 0 5%;
             }
             
-            .detail-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
+            .feature-card, .tile {
+                padding: 25px;
             }
             
-            .feature-card, .tournament-card {
-                padding: 25px;
+            .tile-title {
+                font-size: 1.4rem;
+            }
+            
+            .tile-list {
+                font-size: 1rem;
+            }
+            
+            .rule-category {
+                font-size: 1.1rem;
             }
         }
         
@@ -1058,194 +1006,29 @@
                 font-size: 1.2rem;
             }
             
-            .tournament-title {
-                font-size: 1.4rem;
-            }
-            
             .hero-btns {
                 gap: 15px;
             }
-        }
-
-        .tournament-flex {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        .tournament-info {
-            flex: 1 1 340px;
-            min-width: 260px;
-            max-width: 420px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-        .tournament-details-list {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .detail-row {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(90deg, rgba(108,99,255,0.12) 0%, rgba(255,107,107,0.08) 100%);
-            border-radius: 10px;
-            padding: 10px 18px;
-            box-shadow: 0 2px 8px rgba(108,99,255,0.07);
-            transition: box-shadow 0.3s;
-            position: relative;
-            margin-bottom: 8px;
-        }
-        .detail-row:hover {
-            box-shadow: 0 4px 16px rgba(108,99,255,0.18);
-            background: linear-gradient(90deg, rgba(108,99,255,0.18) 0%, rgba(255,107,107,0.14) 100%);
-        }
-        .detail-icon {
-            font-size: 1.3rem;
-            color: #f0f8ff; /* Premium ice/white color */
-            margin-right: 12px;
-            background: var(--gradient);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(108,99,255,0.12);
-        }
-        .detail-label {
-            font-weight: 600;
-            color: var(--accent);
-            margin-right: 10px;
-            font-size: 1.08rem;
-            min-width: 110px;
-            letter-spacing: 0.5px;
-        }
-        .detail-value {
-            color: var(--light);
-            font-weight: 500;
-            font-size: 1.08rem;
-            background: rgba(108,99,255,0.08);
-            border-radius: 6px;
-            padding: 4px 10px;
-            margin-left: auto;
-            box-shadow: 0 1px 4px rgba(108,99,255,0.07);
-        }
-        .tournament-image-tile.float-right-img {
-            flex: 1 1 320px;
-            min-width: 260px;
-            max-width: 420px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: flex-start;
-        }
-        .tournament-image {
-            max-width: 340px;
-            float: right;
-            margin-left: auto;
-            margin-bottom: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            transition: all 0.5s ease;
-            border: 3px solid transparent;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4) border-box;
-        }
-        .tournament-image img {
-            width: 100%;
-            display: block;
-            border-radius: 10px;
-            transition: all 0.5s ease;
-        }
-        .tournament-image:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-        }
-        .tournament-image:hover img {
-            transform: scale(1.05);
-        }
-        .tournament-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            border-radius: 10px;
-            z-index: 1;
-        }
-        .tournament-image:hover::before {
-            opacity: 1;
-        }
-        .image-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 1.1rem;
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            z-index: 2;
-        }
-        .tournament-image:hover .image-caption {
-            transform: translateY(0);
-        }
-        @media (max-width: 992px) {
-            .tournament-flex {
-                flex-direction: column;
-                gap: 0;
-                align-items: stretch;
-            }
-            .tournament-info, .tournament-image-tile {
-                max-width: 100%;
-                min-width: 0;
-            }
-            .tournament-image-tile.float-right-img {
-                margin-top: 18px;
-                align-items: center;
-            }
-            .tournament-image {
-                float: none;
-                margin-left: 0;
-                max-width: 100%;
+            
+            .tile {
+                padding: 20px;
             }
         }
 
-        /* Center image and button in the tournament-image-tile */
-        .tournament-image-tile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .tournament-image-tile .tournament-image {
-            margin-left: 0;
-            margin-right: 0;
-            float: none;
-            display: block;
-        }
-        .tournament-image-tile .register-btn {
-            margin-top: 20px;
-            width: 100%;
-            display: block;
-            text-align: center;
+        /* Animation for the logo */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
+        /* Animation for the buttons */
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
+        }
+        
         /* Neon outline for controller symbols */
         .particle svg {
             fill: transparent;
@@ -1254,195 +1037,28 @@
             opacity: 0.85;
             transition: transform 0.3s;
         }
+        
         .particle .symbol-x svg { --neon: #2979ff; stroke: #2979ff; }
         .particle .symbol-circle svg { --neon: #ffb300; stroke: #ffb300; }
         .particle .symbol-square svg { --neon: #e91e63; stroke: #e91e63; }
         .particle .symbol-triangle svg { --neon: #43a047; stroke: #43a047; }
+        
         .particle:hover svg {
             transform: scale(1.15) rotate(8deg);
             filter: drop-shadow(0 0 16px var(--neon)) drop-shadow(0 0 32px var(--neon));
         }
+        
         .particle {
             background: none !important;
             box-shadow: none !important;
         }
-        .register-btn a {
-            text-decoration: none !important;
-        }
-        @media (max-width: 576px) {
-    .tournament-image {
-        max-width: 100% !important;
-        height: auto !important;
-        min-width: 180px;
-        min-height: 120px;
-        margin: 0 auto;
-        display: block;
-    }
-    .tournament-image img {
-        width: 100% !important;
-        height: auto !important;
-        min-width: 120px;
-        min-height: 80px;
-        display: block;
-    }
-}
-
-/* Suggestion Box Styles - TWO ROW LAYOUT */
-.suggestion-box-two-rows {
-    margin: 40px auto 0 auto;
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.suggestion-row-1, .suggestion-row-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-.suggestion-input-container {
-    display: flex;
-    align-items: center;
-    background: rgba(30, 30, 50, 0.92);
-    border-radius: 22px;
-    box-shadow: 0 4px 18px rgba(108, 99, 255, 0.1);
-    padding: 12px 18px;
-    width: 100%;
-}
-
-.suggestion-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-}
-
-.suggestion-icon i {
-    font-size: 1.5rem;
-    color: #b48cff;
-}
-
-.suggestion-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 1.08rem;
-    color: var(--light);
-    padding: 8px 0;
-}
-
-.suggestion-buttons {
-    display: flex;
-    gap: 12px;
-    width: 100%;
-}
-
-.suggestion-send-btn, .suggestion-whatsapp-btn {
-    flex: 1;
-    border: none;
-    border-radius: 22px;
-    padding: 12px 0;
-    font-size: 1.08rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-}
-
-.suggestion-send-btn {
-    background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
-    color: white;
-}
-
-.suggestion-whatsapp-btn {
-    background: #25d366;
-    color: white;
-}
-
-.suggestion-send-btn:hover, .suggestion-whatsapp-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
-}
-
-.suggestion-whatsapp-btn:hover {
-    background: #128c7e;
-}
-
-/* Mobile Suggestion Box Layout */
-@media (max-width: 600px) {
-    .suggestion-box-two-rows {
-        max-width: 100%;
-        padding: 0 15px;
-    }
-    
-    .suggestion-input-container {
-        padding: 10px 15px;
-    }
-    
-    .suggestion-buttons {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .suggestion-send-btn, .suggestion-whatsapp-btn {
-        width: 100%;
-    }
-}
-
-/* Mobile Header Height Adjustment */
-@media (max-width: 768px) {
-    :root {
-        --header-height: 70px;
-    }
-}
-
-/* Hero section mobile optimization */
-@media (max-height: 700px) and (max-width: 768px) {
-    .hero {
-        min-height: 450px;
-    }
-    .hero h1 {
-        font-size: 2rem;
-        margin-bottom: 15px;
-    }
-    .hero p {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
-    .hero-btns {
-        margin-top: 20px;
-    }
-}
-
-/* Animation for the logo */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-/* Animation for the buttons */
-@keyframes buttonPulse {
-    0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
-}
     </style>
 </head>
 <body>
     <!-- Sleek Header -->
     <header id="header">
         <a href="#" class="logo">
-            <div>
+            <div class="logo-icon">
                 <img src="https://drive.google.com/thumbnail?id=11e8u4a7nyCH0XKELi1FaVL5gy-GeVK6C&sz=s800" height="40" width="40">
             </div>
             <span class="logo-text">ESDELICS</span>
@@ -1456,9 +1072,9 @@
             </button>
             <ul id="nav-menu">
                 <li><a href="#tournaments">Tournaments</a></li>
-                <li><a href="#highlights">Highlights</a></li>
+                <li><a href="#tournament-info">Rules</a></li>
+                <li><a href="#join">Join Us</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
             </ul>
         </nav>
         
@@ -1472,14 +1088,14 @@
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
 
-    <!-- Hero Section - Fixed for mobile -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>WHERE ESPORTS PULSES</h1>
             <p>Experience the future of competitive gaming with adrenaline-packed tournaments, squad glory, and a thriving community of elite gamers. Your legacy starts now.</p>
             <div class="hero-btns">
                 <a href="#tournaments" class="btn primary-btn">Join Tournament</a>
-                <a href="#about" class="btn secondary-btn">Learn More</a>
+                <a href="#tournament-info" class="btn secondary-btn">View Rules</a>
             </div>
             <!-- Suggestion Box with Two Rows -->
             <div class="suggestion-box-two-rows">
@@ -1506,92 +1122,117 @@
         </div>
     </section>
 
-    <!-- Content Sections -->
+    <!-- BGMI eSports Matches Section -->
     <section class="content-section" id="tournaments" style="background: rgba(10, 10, 20, 0.5);">
-    <h2 class="section-title">BGMI eSports Matches</h2>
-        <p>Match will be updated soon.</p>
+        <h2 class="section-title">BGMI eSports Matches</h2>
+        <p style="text-align: center; font-size: 1.2rem;">Matches will be updated soon. Stay tuned!</p>
+    </section>
 
-
-        
-</section>
-
-    <!-- Tournament Rules & Performance Chart Section (Tiles, Side by Side on PC, Stacked on Mobile) -->
+    <!-- Tournament Rules & Performance Chart Section -->
     <section class="content-section" id="tournament-info" style="background: rgba(10, 10, 20, 0.5); margin-top: 40px;">
-        <h2 class="section-title">Tournament Rules & Performance Chart</h2>
+        <h2 class="section-title">Tournament Rules & Scoring System</h2>
         <div class="tournament-tiles">
             <!-- Tournament Rules Tile -->
             <div class="tile tournament-rules-tile">
                 <h3 class="tile-title"><i class="fas fa-list-ul"></i> Tournament Rules</h3>
+                <h4 style="color: #e91e63;">By registering, you automatically agree to all rules.</h4>
+                
+                <div class="rule-category"><i class="fas fa-users"></i> General & Administrative Rules</div>
                 <ol class="tile-list">
+                    <li>Must be 16+ years old (minors need parent consent).</li>
+                    <li>Must be Level 25 and Platinum I tier or above.</li>
+                    <li>Indian citizenship with valid ID proof required(if needed).</li>
+                    <li><strong>Team structure:</strong> Can play as Solo, Duo, Trio or Squad.</li>                    
                     <li><strong>Registration:</strong> Submit all required tournament information.</li>
-                    <li><strong>Prize Redemption:</strong> Only the In-Game Leader (IGL) can redeem prizes for the team.</li>
+                    <li><strong>Punctuality:</strong> Be on time. Matches start at the scheduled time.</li>
+                    <li><strong>Refunds:</strong> No refund if you do not participate in the match.</li>
+                </ol>
+                
+                <div class="rule-category"><i class="fas fa-exclamation-triangle"></i> Code of Conduct</div>
+                <ol class="tile-list">
+                    <li>Zero tolerance for cheating, hacking, or exploiting.</li>
+                    <li>No match-fixing, collusion, or account sharing.</li>
+                    <li>Respect all players, organizers, and officials.</li>
+                    <li>Follow all instructions from tournament officials.</li>
                     <li><strong>Fair Play:</strong> No hacking, third-party tools, or teaming up with other squads.</li>
                     <li><strong>Respect:</strong> No abusive or offensive language. Discrimination and harassment are strictly prohibited.</li>
-                    <li><strong>Punctuality:</strong> Be on time. Matches start at the scheduled time.</li>
                     <li><strong>Gameplay:</strong> No intentional team killing or sabotage.</li>
-                    <li><strong>Privacy:</strong> Respect other players' privacy and rights.</li>
+                </ol>
+                
+                <div class="rule-category"><i class="fas fa-cogs"></i> Technical Rules</div>
+                <ol class="tile-list">
+                    <li>Only mobile phones allowed (no emulators/controllers).</li>
+                    <li><strong>Reporting an Issue:</strong> POV recording (in-game or handcam).</li>
+                    <li>Submit recordings within 8 hours after matches.</li>
+                    <li><strong>Loot settings:</strong> Loot will be random.</li>
                     <li><strong>Connection:</strong> Players are responsible for their own network connection.</li>
+                    <li><strong>Banned:</strong> All in-game BGMI features [Self AED, Emergency Pickup, Flare Gun, Telepads (in Sanhok) & Streaming] are NOT ALLOWED.</li>
+                </ol>
+                
+                <div class="rule-category"><i class="fas fa-tasks"></i> Operational Rules</div>
+                <ol class="tile-list">
                     <li><strong>Slot Security:</strong> Join the game room in advance to secure your slot.</li>
                     <li><strong>Recording:</strong> Matches will be recorded and uploaded to YouTube.</li>
-                    <li><strong>Refunds:</strong> No refund if you do not participate in the match.</li>
-                    <li><strong>Prize during Tie:</strong> When there is tie, then WWCD will get the prize.</li>
                     <li><strong>Reporting:</strong> To report a hacker, submit a convincing video of the incident.</li>
-                    <li><strong>Features:</strong> All in-game BGMI features (Self AED, Emergency Pickup, etc.) are allowed.</li>
                     <li><strong>Timings:</strong> The ROOM ID will be given 15 minutes before the match timing.</li>
                 </ol>
+                
+                <div class="rule-category"><i class="fas fa-award"></i> Prize Rules</div>
+                <ol class="tile-list">
+                    <li><strong>Prize Redemption:</strong> Only the In-Game Leader (IGL) can redeem prizes for the team.</li>
+                    <li><strong>Prize during Tie:</strong> When there is a tie, then WWCD (Winner Winner Chicken Dinner) will get the prize.</li>
+                </ol>
+                
+                <div class="tile-note">
+                    <i class="fas fa-info-circle"></i> Organizers reserve the right to make changes to rules at any time.
+                </div>
+                <h4 style="color: #e91e63;">Violation to any rules can disqualify the whole team.</h4>
             </div>
+            
             <!-- Performance Chart Tile -->
             <div class="tile performance-chart-tile">
-                <h3 class="tile-title"><i class="fas fa-chart-bar"></i> Performance Chart Criteria</h3>
-                <ul class="tile-list">
-                    <li><strong>Finish Points:</strong> <span style="color:var(--primary);font-weight:bold;">1 Point</span> per finish (kill).</li>
-                    <li>
-                        <strong>Rank Points:</strong>
-                        <table class="rank-table">
-                            <thead>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Points</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>1</td><td>28</td></tr>
-                                <tr><td>2</td><td>23</td></tr>
-                                <tr><td>3</td><td>22</td></tr>
-                                <tr><td>4</td><td>21</td></tr>
-                                <tr><td>5</td><td>20</td></tr>
-                                <tr><td>6</td><td>19</td></tr>
-                                <tr><td>7</td><td>18</td></tr>
-                                <tr><td>8</td><td>17</td></tr>
-                                <tr><td>9</td><td>16</td></tr>
-                                <tr><td>10</td><td>15</td></tr>
-                                <tr><td>11</td><td>14</td></tr>
-                                <tr><td>12</td><td>13</td></tr>
-                                <tr><td>13</td><td>12</td></tr>
-                                <tr><td>14</td><td>11</td></tr>
-                                <tr><td>15</td><td>10</td></tr>
-                                <tr><td>16</td><td>9</td></tr>
-                                <tr><td>17</td><td>8</td></tr>
-                                <tr><td>18</td><td>7</td></tr>
-                                <tr><td>19</td><td>6</td></tr>
-                                <tr><td>20</td><td>5</td></tr>
-                                <tr><td>21</td><td>4</td></tr>
-                                <tr><td>22</td><td>3</td></tr>
-                                <tr><td>23</td><td>2</td></tr>
-                                <tr><td>24</td><td>1</td></tr>
-                                <tr><td>25</td><td>0</td></tr>
-                            </tbody>
-                        </table>
-                    </li>
-                </ul>
+                <h3 class="tile-title"><i class="fas fa-chart-bar"></i> Scoring System</h3>
+                
+                <div class="rule-category"><i class="fas fa-trophy"></i> Placement Points</div>
+                <table class="rank-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Points</th>
+                            <th>Rank</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1st</td><td>10</td><td>9th-16th</td><td>0</td></tr>
+                        <tr><td>2nd</td><td>6</td><td>17th</td><td>0</td></tr>
+                        <tr><td>3rd</td><td>5</td><td>18th</td><td>0</td></tr>
+                        <tr><td>4th</td><td>4</td><td>19th</td><td>0</td></tr>
+                        <tr><td>5th</td><td>3</td><td>20th</td><td>0</td></tr>
+                        <tr><td>6th</td><td>2</td><td>21st</td><td>0</td></tr>
+                        <tr><td>7th-8th</td><td>1</td><td>22nd-25th</td><td>0</td></tr>
+                    </tbody>
+                </table>
+                
+                <div class="rule-category"><i class="fas fa-skull"></i> Finish Points</div>
+                <p style="margin-bottom: 15px;">Each kill is worth <strong>1 point</strong>.</p>
+                
+                <div class="rule-category"><i class="fas fa-tie"></i> Tiebreaker Order</div>
+                <ol class="tile-list">
+                    <li>Most #1 placements (WWCD)</li>
+                    <li>Highest total placement points</li>
+                    <li>Highest total kills</li>
+                    <li>Best placement in most recent match</li>
+                </ol>
+                
                 <div class="tile-note">
-                    <i class="fas fa-info-circle"></i> <strong>Total Points = Finish Points + Rank Points</strong>
+                    <i class="fas fa-star"></i> Total Points = Placement Points + Finish Points
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- UPDATED: Responsive Join Us Section -->
+    <!-- Join Us Section -->
     <section class="content-section" id="join">
         <h2 class="section-title">Join Us</h2>
         <p style="text-align: center; margin-bottom: 40px; font-size: 1.2rem;">
@@ -1655,28 +1296,31 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section class="content-section" style="background: rgba(10, 10, 20, 0.5);">
         <div class="contact-grid">
             <div class="feature-card">
-                <h1 class="tournament-title">Welcome to the platform for gamers 🎮</h1>
+                <h1 class="feature-title">Welcome to the platform for gamers 🎮</h1>
                 <p>
                     Esdelics is where competition meets community. We host high-stakes tournaments, rank the elite, and unite gamers worldwide. Whether you're climbing leaderboards or forging rivalries, this is your home turf. Join a thriving esports ecosystem built by players, for players.
                 </p>
                 <div class="welcome-flex" style="display: flex; margin-top: 30px; gap: 20px;">
                     <div style="flex: 1; text-align: center;">
-                        <p class="tournament-title" style="font-size: 2rem;">Compete</p>
+                        <p class="feature-title" style="font-size: 2rem;">Compete</p>
                     </div>
                     <div style="flex: 1; text-align: center;">
-                        <p class="tournament-title" style="font-size: 2rem;">Connect</p>
+                        <p class="feature-title" style="font-size: 2rem;">Connect</p>
                     </div>
                     <div style="flex: 1; text-align: center;">
-                        <p class="tournament-title" style="font-size: 2rem;">Conquer</p>
+                        <p class="feature-title" style="font-size: 2rem;">Conquer</p>
                     </div>
                 </div>
             </div>
             <div class="feature-card">
                 <div style="display: flex; justify-content: center; align-items: center; height: 70px;">
-                  <img src="https://drive.google.com/thumbnail?id=11e8u4a7nyCH0XKELi1FaVL5gy-GeVK6C&sz=s800" height="70" width="70">
+                    <div class="logo-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
                 </div>
 
                 <p style="text-align: center; font-size: 1.5rem; margin-bottom: 30px;">
@@ -1704,6 +1348,7 @@
         </div>
     </section>
 
+    <!-- Highlights Section -->
     <section class="content-section" id="highlights">
         <h2 class="section-title">Key Highlights</h2>
         
@@ -1740,6 +1385,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="content-section" id="contact" style="background: rgba(10, 10, 20, 0.5);">
         <h2 class="section-title">Contact Us</h2>
         
@@ -1800,6 +1446,7 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section class="content-section" id="about">
         <h2 class="section-title">About ES Delics</h2>
         <div class="team-container">
@@ -1809,9 +1456,11 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer style="padding: 40px 20px; text-align: center; background: rgba(5, 5, 15, 0.9); border-top: 1px solid rgba(108, 99, 255, 0.2);">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <div class="logo" style="justify-content: center; margin-bottom: 20px;">
                 <div>
                 <img src="https://drive.google.com/thumbnail?id=11e8u4a7nyCH0XKELi1FaVL5gy-GeVK6C&sz=s800" height="40" width="40">
             </div>
