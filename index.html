@@ -1128,6 +1128,191 @@
             background: none !important;
             box-shadow: none !important;
         }
+
+        /* Media Gallery Styles */
+        .media-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto 30px auto;
+            padding: 0 20px;
+        }
+        .media-tile {
+            background: rgba(30, 30, 50, 0.85);
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(108,99,255,0.12);
+            padding: 24px 18px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.35s cubic-bezier(.4,2,.3,1), box-shadow 0.35s cubic-bezier(.4,2,.3,1), background 0.3s;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+        .media-tile:nth-child(1) { animation-delay: 0.1s; }
+        .media-tile:nth-child(2) { animation-delay: 0.3s; }
+        .media-tile:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+
+        .media-tile:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.25);
+            background: rgba(35, 35, 60, 0.95);
+        }
+        .media-video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(108,99,255,0.10);
+            margin-bottom: 18px;
+            background: #121220;
+            transition: box-shadow 0.3s;
+        }
+        .media-tile:hover .media-video-container {
+            box-shadow: 0 8px 28px rgba(108,99,255,0.18);
+        }
+        .media-video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #121220;
+        }
+        .media-caption {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(108,99,255,0.08);
+            padding: 10px 18px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 4px;
+            transition: color 0.3s, background 0.3s;
+            opacity: 0.92;
+        }
+        .media-tile:hover .media-caption {
+            color: var(--primary);
+            background: rgba(108,99,255,0.15);
+        }
+        .media-caption i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 992px) {
+            .media-gallery-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+            }
+        }
+        @media (max-width: 576px) {
+            .media-gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 0 6px;
+            }
+            .media-tile {
+                padding: 14px 6px 10px 6px;
+            }
+            .media-caption {
+                font-size: 1rem;
+                padding: 8px 10px;
+            }
+        }
+
+        /* Leaderboard Graph Styles */
+        .leaderboard-section {
+            margin-top: 32px;
+            width: 100%;
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 14px;
+            padding: 22px 16px;
+            box-shadow: 0 4px 18px rgba(108,99,255,0.10);
+            animation: fadeInUp 0.8s forwards;
+            opacity: 0;
+        }
+        .performance-chart-tile .leaderboard-section {
+            opacity: 1;
+            animation-delay: 0.7s;
+        }
+        .leaderboard-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .leaderboard-graph {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            position: relative;
+        }
+        .leaderboard-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 10px;
+            padding: 8px 12px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s, transform 0.7s cubic-bezier(.4,2,.3,1);
+            animation: fadeBarIn 0.7s cubic-bezier(.4,2,.3,1) forwards;
+            opacity: 0;
+            /* For animation when order changes */
+            will-change: transform;
+        }
+        @keyframes fadeBarIn {
+            0% { opacity: 0; transform: translateY(40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        .leaderboard-bar:hover {
+            background: rgba(35, 35, 60, 0.92);
+        }
+        .leaderboard-team {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 120px;
+            font-size: 1.08rem;
+            flex-shrink: 0;
+        }
+        .leaderboard-bar-graph {
+            height: 22px;
+            border-radius: 8px;
+            background: var(--gradient);
+            transition: width 1.1s cubic-bezier(.4,2,.3,1);
+            box-shadow: 0 2px 8px rgba(108,99,255,0.10);
+            width: 0%; /* Always start at 0 */
+        }
+        .leaderboard-points {
+            font-weight: 700;
+            color: var(--accent);
+            margin-left: 12px;
+            font-size: 1.05rem;
+            min-width: 38px;
+            text-align: right;
+        }
+        @media (max-width: 768px) {
+            .leaderboard-team { min-width: 80px; font-size: 0.98rem; }
+            .leaderboard-bar-graph { height: 16px; }
+            .leaderboard-section { padding: 14px 6px; }
+        }
+        @media (max-width: 400px) {
+            .leaderboard-team { min-width: 60px; font-size: 0.92rem; }
+            .leaderboard-bar-graph { height: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -1333,6 +1518,17 @@
                 <div class="tile-note">
                     <i class="fas fa-star"></i> Total Points = Placement Points + Finish Points
                 </div>
+                
+                <!-- Leaderboard Graph -->
+                <div class="leaderboard-section">
+                    <div class="leaderboard-title">
+                        <i class="fas fa-trophy"></i> Weekly Top Teams Leaderboard
+                    </div>
+                    <div class="leaderboard-graph" id="leaderboard-graph">
+                        <!-- Bars will be injected by JS -->                         
+                    </div>
+                    <br><p><strong>From</strong> 01/10/2025</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1397,6 +1593,40 @@
                     <span class="social-title">Discord</span>
                     <span class="social-desc">Voice chat, team up, and join exclusive tournaments.</span>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Gallery Section -->
+    <section class="content-section" id="media-gallery">
+        <h2 class="section-title">Media Gallery</h2>
+        <div class="media-gallery-grid">
+            <!-- Most Liked by Viewers -->
+            <div class="media-tile">
+                <div class="media-video-container">
+                    <iframe src="https://www.youtube.com/embed/V5szIuQXXbQ" title="Most Liked by Viewers" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="media-caption">
+                    <i class="fas fa-heart"></i> Most Liked by Viewers
+                </div>
+            </div>
+            <!-- Most Recent Video -->
+            <div class="media-tile">
+                <div class="media-video-container">
+                    <iframe src="https://www.youtube.com/embed/V5szIuQXXbQ" title="Most Recent Video" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="media-caption">
+                    <i class="fas fa-clock"></i> Most Recent Video
+                </div>
+            </div>
+            <!-- Recommended to Watch -->
+            <div class="media-tile">
+                <div class="media-video-container">
+                    <iframe src="https://youtube.com/embed/3tCh5-_aQVs" title="Recommended to Watch" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="media-caption">
+                    <i class="fas fa-star"></i> Recommended to Watch
+                </div>
             </div>
         </div>
     </section>
@@ -1656,9 +1886,91 @@
             }
         }
 
-        // Run on load and resize
-        window.addEventListener('load', adjustHeroForMobile);
-        window.addEventListener('resize', adjustHeroForMobile);
+        // Leaderboard Data (leave for you to update)
+const leaderboardTeams = [
+    { name: "Overpowered eSports", points: 00 },
+    { name: "Star", points: 00 },
+    { name: "White Worker", points: 00 },
+    { name: "Devil", points: 00 },
+    { name: "Banti", points: 00 },
+    { name: "INF eSports", points: 00 },
+    { name: "LEGIT", points: 00 },
+    { name: "Amit", points: 00 },
+    { name: "Fearless eSports", points: 00 },
+    { name: "Smoker Gaming", points: 00 },
+    { name: "Faisal", points: 00 },
+    { name: "TSO", points: 00 },
+    { name: "Mau Champions", points: 00 }
+];
+
+// Store previous order for animation
+let previousOrder = [];
+
+// Render Leaderboard Graph
+function renderLeaderboard() {
+    const graph = document.getElementById('leaderboard-graph');
+    if (!graph) return;
+
+    // Sort teams by points descending
+    const sorted = leaderboardTeams.slice().sort((a, b) => b.points - a.points);
+
+    // Find max points for scaling
+    const maxPoints = sorted.length ? sorted[0].points : 1;
+
+    // Save previous order for animation
+    const prevOrder = previousOrder;
+    previousOrder = sorted.map(team => team.name);
+
+    // Remove all bars
+    graph.innerHTML = '';
+
+    // Create bars
+    sorted.forEach((team, idx) => {
+        const bar = document.createElement('div');
+        bar.className = 'leaderboard-bar';
+        bar.style.animationDelay = `${0.1 + idx * 0.07}s`;
+
+        // Animate position if order changed
+        if (prevOrder.length) {
+            const prevIdx = prevOrder.indexOf(team.name);
+            if (prevIdx !== -1 && prevIdx !== idx) {
+                bar.style.transform = `translateY(${(prevIdx - idx) * 48}px)`;
+                setTimeout(() => {
+                    bar.style.transform = 'translateY(0)';
+                }, 50);
+            }
+        }
+
+        const teamName = document.createElement('span');
+        teamName.className = 'leaderboard-team';
+        teamName.textContent = team.name;
+
+        const barGraph = document.createElement('div');
+        barGraph.className = 'leaderboard-bar-graph';
+        barGraph.style.width = '0%'; // Always start at 0
+
+        // Animate bar width after render
+        setTimeout(() => {
+            barGraph.style.width = `${Math.max(10, (team.points / maxPoints) * 85)}%`;
+        }, 350 + idx * 80);
+
+        const points = document.createElement('span');
+        points.className = 'leaderboard-points';
+        points.textContent = team.points;
+
+        bar.appendChild(teamName);
+        bar.appendChild(barGraph);
+        bar.appendChild(points);
+        graph.appendChild(bar);
+    });
+}
+
+// Run leaderboard render on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', renderLeaderboard);
+
+// Run on load and resize
+window.addEventListener('load', adjustHeroForMobile);
+window.addEventListener('resize', adjustHeroForMobile);
     </script>
 </body>
 </html>
