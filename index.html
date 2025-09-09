@@ -1313,6 +1313,159 @@
             .leaderboard-team { min-width: 60px; font-size: 0.92rem; }
             .leaderboard-bar-graph { height: 12px; }
         }
+
+        /* New Styles for BGMI eSports Matches Section */
+.bgmi-matches-section {
+  background: none;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.bgmi-glass-card {
+  background: linear-gradient(135deg, rgba(40,40,70,0.7) 60%, rgba(76,99,255,0.18) 100%);
+  border-radius: 22px;
+  border: 1.5px solid rgba(108,99,255,0.18);
+  box-shadow: 0 8px 32px rgba(108,99,255,0.18), 0 1.5px 18px rgba(0,0,0,0.18);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  padding: 32px 24px 24px 24px;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, background 0.3s;
+  touch-action: manipulation;
+}
+.bgmi-glass-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, #6c63ff55 0%, transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+.bgmi-glass-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, #ff6b6b44 0%, transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+.bgmi-match-title {
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 22px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px #6c63ff44;
+  position: relative;
+  z-index: 1;
+}
+.bgmi-match-table {
+  width: 100%;
+  color: #F0F0F0;
+  border-collapse: collapse;
+  font-size: 1.08rem;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+.bgmi-match-table td {
+  padding: 13px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: left;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: background 0.2s;
+}
+.bgmi-label {
+  color: #9D00FF;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.bgmi-value {
+  text-align: right;
+  color: #F0F0F0;
+  font-weight: 500;
+}
+.bgmi-prize {
+  color: #FFD700 !important;
+  font-weight: 700;
+  text-shadow: 0 1px 8px #FFD70022;
+}
+.bgmi-criteria {
+  color: #00ccff !important;
+  font-weight: 700;
+}
+.bgmi-participate-btn-container {
+  text-align: center;
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+}
+.bgmi-participate-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #4D8AF0 0%, #6C63FF 100%);
+  color: white;
+  padding: 14px 36px;
+  border-radius: 32px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 18px #6c63ff33;
+  border: none;
+  outline: none;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+}
+.bgmi-participate-btn:active, .bgmi-participate-btn:focus {
+  background: linear-gradient(135deg, #6C63FF 0%, #4D8AF0 100%);
+  box-shadow: 0 8px 28px #6c63ff44;
+  transform: scale(0.98);
+}
+.bgmi-participate-btn i {
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+@media (max-width: 768px) {
+  .bgmi-glass-card {
+    padding: 18px 8px 14px 8px;
+    max-width: 98vw;
+  }
+  .bgmi-match-title {
+    font-size: 1.4rem;
+  }
+  .bgmi-match-table td {
+    padding: 10px 6px;
+    font-size: 0.98rem;
+  }
+  .bgmi-participate-btn {
+    padding: 10px 18px;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 400px) {
+  .bgmi-glass-card {
+    padding: 10px 2px 8px 2px;
+  }
+  .bgmi-match-title {
+    font-size: 1.1rem;
+  }
+  .bgmi-match-table td {
+    padding: 7px 2px;
+    font-size: 0.92rem;
+  }
+  .bgmi-participate-btn {
+    padding: 8px 8px;
+    font-size: 0.95rem;
+  }
+}
     </style>
 </head>
 <body>
@@ -1379,69 +1532,63 @@
     </section>
 
     <!-- BGMI eSports Matches Section -->
-    <section class="content-section" id="tournaments" style="background: rgba(10, 10, 20, 0.5);">
-        <h2 class="section-title">BGMI eSports Matches</h2>
-        <div style="background: linear-gradient(135deg, #1a1a2a, #16213e); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-  <h2 style="color: #FFD700; text-align: center; margin-bottom: 20px;">BGMI ES32</h2>
-  
-  <table style="width: 100%; color: #F0F0F0; border-collapse: collapse;">
-    <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #9D00FF;">Number of Matches</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right;">3</td>
-    </tr>
-    <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #9D00FF;">Map</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right;">
-        1st: Erangel<br>
-        2nd: Miramar<br>
-        3rd: Erangel<br>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #6CFFFF;">Date</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right;">10 September 2025</td>
-    </tr>
-      <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #6CFFFF;">IDP Time</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right;">08:45PM IST</td>
-    </tr> 
-    <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #6CFFFF;">Starting Time</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right;">09:00PM IST</td>
-    </tr>
-      <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #6CFFFF;">Max Last Match Time</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right;">11:00PM IST</td>
-    </tr> 
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #6CFFFF;">Participation Fees</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right;">₹20 Per Team</td>
-    </tr>
-    <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #FFD700;">First Prize</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right; color: #FFD700;">₹100</td>
-    </tr>
-      <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #FFD700;">Second Prize</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right; color: #FFD700;">₹50</td>
-    </tr>
-      <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #FFD700;">Third Prize</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right; color: #FFD700;">₹20</td>
-    </tr>  
-    <tr>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; color: #00ccff;">Winning Criteria</td>
-      <td style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: right; color: #00ccff;">Points Table</td>
-    </tr>
-  </table>
-  
-  <div style="text-align: center; margin-top: 25px;">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf36L8hphtIKvnATlx-quDYy3RxzdE4QP7oMMs3i1vpK1PHOg/viewform?usp=dialog" style="display: inline-block; background: linear-gradient(135deg, #4D8AF0, #6C63FF); color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px;">
-      Participate Here
-    </a>
-  </div>
-</div>
-    </section>
-
+    <section class="content-section bgmi-matches-section" id="tournaments">
+    <h2 class="section-title">BGMI eSports Matches</h2>
+    <div class="bgmi-glass-card">
+      <h2 class="bgmi-match-title">BGMI ES32</h2>
+      <table class="bgmi-match-table">
+        <tr>
+          <td class="bgmi-label">Number of Matches</td>
+          <td class="bgmi-value">3</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label">Map</td>
+          <td class="bgmi-value">1st: Erangel<br>2nd: Miramar<br>3rd: Erangel</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label">Date</td>
+          <td class="bgmi-value">10 September 2025</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label">IDP Time</td>
+          <td class="bgmi-value">08:45PM IST</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label">Starting Time</td>
+          <td class="bgmi-value">09:00PM IST</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label">Max Last Match Time</td>
+          <td class="bgmi-value">11:00PM IST</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label">Participation Fees</td>
+          <td class="bgmi-value">₹20 Per Team</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label bgmi-prize">First Prize</td>
+          <td class="bgmi-value bgmi-prize">₹100</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label bgmi-prize">Second Prize</td>
+          <td class="bgmi-value bgmi-prize">₹50</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label bgmi-prize">Third Prize</td>
+          <td class="bgmi-value bgmi-prize">₹20</td>
+        </tr>
+        <tr>
+          <td class="bgmi-label bgmi-criteria">Winning Criteria</td>
+          <td class="bgmi-value bgmi-criteria">Points Table</td>
+        </tr>
+      </table>
+      <div class="bgmi-participate-btn-container">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf36L8hphtIKvnATlx-quDYy3RxzdE4QP7oMMs3i1vpK1PHOg/viewform?usp=dialog" class="bgmi-participate-btn" tabindex="0">
+          <i class="fas fa-rocket"></i> Participate Here
+        </a>
+      </div>
+    </div>
+</section>
     <!-- Tournament Rules & Performance Chart Section -->
     <section class="content-section" id="tournament-info" style="background: rgba(10, 10, 20, 0.5); margin-top: 40px;">
         <h2 class="section-title">Tournament Rules & Scoring System</h2>
@@ -1872,7 +2019,7 @@
                         hamburger.classList.remove('active');
                     }
                 }
-            });
+           ;
         });
 
         // Suggestion functions
