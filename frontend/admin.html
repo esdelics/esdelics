@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <style>
+    body { font-family: Arial; background: #0f172a; color: white; padding: 20px; }
+    input { padding: 8px; margin: 5px; width: 250px; border-radius: 5px; border: none; }
+    button { padding: 8px 15px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; background: linear-gradient(45deg, #3b82f6, #9333ea); color: white; }
+    .login-box, .admin-panel { max-width: 420px; margin: auto; background: #1e293b; padding: 20px; border-radius: 12px; }
+    .hidden { display: none; }
+    .match-box { border: 1px solid #555; padding: 10px; margin-top: 10px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+<!-- 🔐 LOGIN -->
+<div id="loginSection" class="login-box">
+  <h2>Admin Login</h2>
+  <input id="username" placeholder="Username"><br>
+  <input id="password" type="password" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+  <p id="loginMsg"></p>
+</div>
+
+<!-- 🛠 ADMIN PANEL -->
+<div id="adminSection" class="admin-panel hidden">
+  <h2>Admin Panel</h2>
+  <button onclick="logout()">Logout</button>
+  <hr>
+  <h3>Create Match</h3>
+  <input id="title" placeholder="Match Title"><br>
+  <input id="match_count" placeholder="Number of Matches"><br>
+  <input id="day" placeholder="Day"><br>
+  <input id="date" type="date"><br>
+  <input id="room" placeholder="Room ID / Password / Time"><br>
+  <input id="time" placeholder="Match Starting Time"><br>
+  <input id="entry_fee" placeholder="Entry Fee"><br>
+  <input id="prize1" placeholder="1st Prize"><br>
+  <input id="prize2" placeholder="2nd Prize"><br>
+  <input id="prize3" placeholder="3rd Prize"><br>
+  <input id="register_link" placeholder="Register Link"><br>
+
+  <h4>Maps</h4>
+  <div id="mapsContainer"></div>
+  <button onclick="addMap()">+ Add Map</button>
+  <br><br>
+  <button onclick="addMatch()">Post Match</button>
+  <hr>
+  <h3>All Matches</h3>
+  <div id="matches"></div>
+</div>
+
+<script>
+https://backend-lklu.onrender.com
+
+// ---------------- LOGIN ----------------
+async function login() {
+  const res = await fetch(`${BASE_URL}/login`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    credentials: "include",
+    body: JSON.stringify({
+      username: document.getElementById("username").value,
+      password: document.getElementById("password").value
+    })
+  });
+  const data = await res.json();
+  if (res.status === 200) {
+    document.getElementById("loginSection").classList.add("hidden");
+    document.getElementById("adminSection").classList.remove("hidden");
+    loadMatches();
+  } else {
+    document.getElementById("loginMsg").innerText = data.message;
+  }
+}
+
+// ---------------- LOGOUT ----------------
+async function logout() {
+  await fetch(`${BASE_URL}/logout`, { method: "POST", credentials: "include" });
+  location.reload();
+}
+
+// ---------------- MAPS ----------------
+function addMap() {
+  const div = document.createElement("div");
+  div.innerHTML = `<input class="map" placeholder="Map Name"><br>`;
+  document.getElementById("mapsContainer").appendChild(div);
+}
+
+// ---------------- ADD MATCH ----------------
+async function addMatch() {
+  let maps = [];
+  document.querySelectorAll(".map").forEach(el => { if (el.value) maps.push(el.value); });
+
+  const data = {
+    title: document.getElementById("title").value,
+    match_count: document.getElementById("match_count").value,
+    maps: JSON.stringify(maps),
+    day: document.getElementById("day").value,
+    date: document.getElementById("date").value,
+    room: document.getElementById("room").value,
+    time: document.getElementById("time").value,
+    entry_fee: document.getElementById("entry_fee").value,
+    prize1: document.getElementById("prize1").value,
+    prize2: document.getElementById("prize2").value,
+    prize3: document.getElementById("prize3").value,
+    register_link: document.getElementById("register_link").value
+  };
+
+  const res = await fetch(`${BASE_URL}/add-match`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    credentials: "include",
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  alert(result.message);
+  loadMatches();
+}
+
+// ---------------- LOAD MATCHES ----------------
+async function loadMatches() {
+  const res = await fetch(`${BASE_URL}/matches`, { credentials: "include" });
+  if (res.status === 401) { alert("Session expired. Please login again."); location.reload(); return; }
+  const matches = await res.json();
+  let html = "";
+  matches.forEach(m => {
+    html += `<div class="match-box"><b>${m.title}</b><br><button onclick="deleteMatch(${m.id})">Delete</button></div>`;
+  });
+  document.getElementById("matches").innerHTML = html;
+}
+
+// ---------------- DELETE MATCH ----------------
+async function deleteMatch(id) {
+  await fetch(`${BASE_URL}/delete-match/${id}`, { method: "DELETE", credentials: "include" });
+  loadMatches();
+}
+</script>
+
+</body>
+</html>
